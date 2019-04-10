@@ -14,5 +14,10 @@ namespace snortcakes.Pages
         {
             Message = "Your contact page.";
         }
+
+        public void OnPost()
+        {
+            Message = Request.Form[nameof(Message)];
+        }
     }
 }
