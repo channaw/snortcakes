@@ -1,0 +1,45 @@
+﻿@page
+@model OrderModel
+@{
+    ViewData["Title"] = "Order";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#flavorID').click(function () {
+
+            alert("entered in trial button code");
+
+            $.ajax({
+                type: "GET",
+                url: "http://fdcapi.azurewebsites.net/api/flavors/",
+                dataType: "json",
+                success: function (data) {
+
+                    $.each(data.aaData, function (i, data) {
+                        alert(data.flavorId + ":" + data.flavorName);
+                        var div_data = "<option value=" + data.flavorId + ">" + data.flavorName + "</option>";
+                        alert(div_data);
+                        $(div_data).appendTo('#flavor_select');
+                    });
+                }
+            });
+
+            alert("entered in trial button code");
+        }
+
+            
+
+        );
+    });
+
+</script>
+
+<h2>Order</h2>
+
+<div id="div_source1">
+    <select id="flavor_select">
+        <option value="select"></option>
+    </select>
+</div>
+<input type="button" id="flavorID" name="btn_Flavor" value="Flavors">
