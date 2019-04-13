@@ -8,8 +8,6 @@
     $(document).ready(function () {
         $('#flavorID').click(function () {
 
-            alert("entered in trial button code");
-
             $.ajax({
                 type: "GET",
                 url: "http://fdcapi.azurewebsites.net/api/flavors/",
@@ -17,9 +15,7 @@
                 success: function (data) {
 
                     $.each(data, function (i, data) {
-                        alert(data.flavorId + ":" + data.flavorName);
                         var div_data = "<option value=" + data.flavorId + ">" + data.flavorName + "</option>";
-                        alert(div_data);
                         $(div_data).appendTo('#flavor_select');
                     });
                 }
