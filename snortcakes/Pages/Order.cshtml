@@ -16,7 +16,7 @@
                 dataType: "json",
                 success: function (data) {
 
-                    $.each(data.aaData, function (i, data) {
+                    $.each(data, function (i, data) {
                         alert(data.flavorId + ":" + data.flavorName);
                         var div_data = "<option value=" + data.flavorId + ">" + data.flavorName + "</option>";
                         alert(div_data);
@@ -24,8 +24,6 @@
                     });
                 }
             });
-
-            alert("entered in trial button code");
         }
 
             
