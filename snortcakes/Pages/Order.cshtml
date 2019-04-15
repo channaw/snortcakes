@@ -6,8 +6,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#flavorID').click(function () {
-
+        
             $.ajax({
                 type: "GET",
                 url: "http://fdcapi.azurewebsites.net/api/flavors/",
@@ -20,11 +19,46 @@
                     });
                 }
             });
-        }
 
-            
 
-        );
+        $.ajax({
+                type: "GET",
+                url: "http://fdcapi.azurewebsites.net/api/flavors/",
+                dataType: "json",
+                success: function (data) {
+
+                    $.each(data, function (i, data) {
+                        var div_data = "<option value=" + data.flavorId + ">" + data.flavorName + "</option>";
+                        $(div_data).appendTo('#flavor_select2');
+                    });
+                }
+        });
+
+        $.ajax({
+                type: "GET",
+                url: "http://fdcapi.azurewebsites.net/api/frostings/",
+                dataType: "json",
+                success: function (data) {
+
+                    $.each(data, function (i, data) {
+                        var div_data = "<option value=" + data.frostingId + ">" + data.frostingName + "</option>";
+                        $(div_data).appendTo('#frostings_select');
+                    });
+                }
+        });
+
+        $.ajax({
+                type: "GET",
+                url: "http://fdcapi.azurewebsites.net/api/toppings",
+                dataType: "json",
+                success: function (data) {
+
+                    $.each(data, function (i, data) {
+                        var div_data = "<option value=" + data.toppingId + ">" + data.toppingName + "</option>";
+                        $(div_data).appendTo('#toppings_select');
+                    });
+                }
+            });
     });
 
 </script>
@@ -32,8 +66,42 @@
 <h2>Order</h2>
 
 <div id="div_source1">
-    <select id="flavor_select">
-        <option value="select"></option>
-    </select>
+    <div class="row">
+        <div class="col">
+            <select id="flavor_select" class="form-control-lg dropdown-text">
+                <option value="select"></option>
+            </select>
+
+        </div>
+        <div class="col">
+            <div class="contact-label">+</div>
+        </div>
+        <div class="col">
+            <select id="flavor_select2" class="form-control-lg dropdown-text">
+                <option value="select"></option>
+            </select>
+        </div>
+        <div class="col">
+            <div class="contact-label">+</div>
+        </div>
+        <div class="col">
+            <select id="frostings_select" class="form-control-lg dropdown-text">
+                <option value="select"></option>
+            </select>
+        </div>
+        <div class="col">
+            <div class="contact-label">+</div>
+        </div>
+        <div class="col">
+            <select id="toppings_select" class="form-control-lg dropdown-text">
+                <option value="select"></option>
+            </select>
+
+        </div>
+    </div>
+         
+
+    
+    
+    
 </div>
-<input type="button" id="flavorID" name="btn_Flavor" value="Flavors">
